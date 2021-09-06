@@ -5,7 +5,7 @@ namespace hutao
 {
     namespace lexer
     {
-        class lexer
+        class Lexer
         {
         };
     }

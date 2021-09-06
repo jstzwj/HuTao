@@ -21,18 +21,18 @@
 
 namespace hutao
 {
-    class huchar
+    class HuChar
     {
     public:
         using CodePointType = std::uint32_t;
         using CharType = std::uint8_t;
 
-        huchar()
+        HuChar()
             : code()
         {
         }
 
-        huchar(char charIn)
+        HuChar(char charIn)
             : code(charIn)
         {
         }
@@ -46,14 +46,14 @@ namespace hutao
             return encode_utf8_raw(this->code, dst, len);
         }
 
-        static huchar from_u32(std::uint32_t i)
+        static HuChar from_u32(std::uint32_t i)
         {
-            huchar ret;
+            HuChar ret;
             ret.code = i;
             return ret;
         }
 
-        friend std::ostream &operator<<(std::ostream &out, const huchar &c)
+        friend std::ostream &operator<<(std::ostream &out, const HuChar &c)
         {
             unsigned char buffer[5] = {0};
             c.encode_utf8(buffer, 5);
@@ -150,18 +150,18 @@ namespace hutao
     private:
         CodePointType code;
     };
-    class hustring
+    class HuString
     {
     public:
-        using CodePointType = huchar::CodePointType;
-        using CharType = huchar::CharType;
+        using CodePointType = HuChar::CodePointType;
+        using CharType = HuChar::CharType;
 
-        hustring()
+        HuString()
             : storage()
         {
         }
 
-        hustring(std::string s)
+        HuString(std::string s)
             : storage()
         {
             for (const char &c : s)
@@ -178,7 +178,7 @@ namespace hutao
 
         void clear() { this->storage.clear(); }
 
-        void push(huchar c)
+        void push(HuChar c)
         {
             std::uint8_t buffer[5] = {0};
             std::size_t len = c.encode_utf8(buffer, 5);
@@ -188,19 +188,19 @@ namespace hutao
             }
         }
 
-        friend std::ostream &operator<<(std::ostream &out, const hustring &s)
+        friend std::ostream &operator<<(std::ostream &out, const HuString &s)
         {
             // out << s.id << ":" << s.name.c_str() << endl;
             return out;
         }
 
-        static hustring from_utf8(std::string str)
+        static HuString from_utf8(std::string str)
         {
         }
 
-        static hustring with_capacity(std::size_t capacity)
+        static HuString with_capacity(std::size_t capacity)
         {
-            hustring ret;
+            HuString ret;
             ret.storage.reserve(capacity);
             return ret;
         }

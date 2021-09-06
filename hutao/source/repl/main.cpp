@@ -2,8 +2,8 @@
 #include <fstream>
 #include <string>
 
-#include <hutao/common/version.h>
-#include <hutao/common/hustring.h>
+#include <hutao/common/Version.h>
+#include <hutao/common/HuString.h>
 
 int repl() {
     // init kale environment
