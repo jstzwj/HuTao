@@ -1,6 +1,5 @@
 
 
-include_directories(${PROJECT_SOURCE_DIR}/contrib/antlr4/runtime/src)
 include_directories(${PROJECT_SOURCE_DIR}/hutao/include)
 
 add_executable(hutao-driver main.cpp)
