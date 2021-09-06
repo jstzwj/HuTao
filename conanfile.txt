@@ -1,0 +1,5 @@
+[requires]
+llvm-core/12.0.0
+
+[generators]
+cmake
