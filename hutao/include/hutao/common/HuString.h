@@ -5,8 +5,10 @@
 #include <vector>
 #include <exception>
 #include <stdexcept>
+#include <algorithm>
 #include <stdint.h>
 #include <ostream>
+#include <optional>
 
 #include <fmt/core.h>
 
@@ -19,8 +21,16 @@
 #define TAG_THREE_B 0b1110'0000
 #define TAG_FOUR_B 0b1111'0000
 
+/// Mask of the value bits of a continuation byte.
+#define CONT_MASK 0b0011'1111
+/// Value of the tag bits (tag mask is !CONT_MASK) of a continuation byte.
+#define TAG_CONT_U8 0b1000'0000
+
 namespace hutao
 {
+
+    class HuString;
+
     class HuChar
     {
     public:
@@ -35,6 +45,16 @@ namespace hutao
         HuChar(char charIn)
             : code(charIn)
         {
+        }
+
+        bool operator ==(char c)
+        {
+            return c == code;
+        }
+
+        bool operator !=(char c)
+        {
+            return c != code;
         }
 
         std::size_t len_utf8() const { return len_utf8(code); }
@@ -150,6 +170,76 @@ namespace hutao
     private:
         CodePointType code;
     };
+
+
+    
+    class HuStringChars
+    {
+    public:
+        HuStringChars(const HuString* str, const std::uint8_t* pos)
+            :str(str), pos(pos)
+        {
+        }
+        HuStringChars& operator = (const HuStringChars& iter)
+        {
+            str = iter.str;
+            pos = iter.pos;
+        }
+        bool operator != (const HuStringChars& iter)
+        {
+            return str != iter.str || pos != iter.pos;
+        }
+        bool operator == (const HuStringChars& iter)
+        {
+            return str == iter.str && pos == iter.pos;
+        }
+        HuStringChars& operator ++ ()
+        {
+            pos++;
+            return *this;
+        }
+        HuStringChars operator ++ (int)
+        {
+            HuStringChars tmp = *this;
+            pos++;
+            return tmp;
+        }
+
+        HuString as_str() const;
+
+        std::optional<HuChar> next();
+
+        std::size_t advance_by(std::size_t n);
+
+        std::optional<HuChar> nth(std::size_t n);
+
+        /// Returns the initial codepoint accumulator for the first byte.
+        /// The first byte is special, only want bottom 5 bits for width 2, 4 bits
+        /// for width 3, and 3 bits for width 4.
+        static std::uint32_t utf8_first_byte(std::uint8_t b, std::uint32_t width)
+        {
+            return b & (0x7F >> width);
+        }
+
+        /// Returns the value of `ch` updated with continuation byte `byte`.
+        static std::uint32_t utf8_acc_cont_byte(std::uint32_t ch, std::uint8_t b)
+        {
+            return (ch << 6) | (b & CONT_MASK);
+        }
+
+        static std::uint8_t get_byte_or_0(const std::uint8_t*& i, const std::uint8_t* end)
+        {
+            if (i < end) return *(i++);
+            else return 0;
+        }
+
+
+        static bool next_code_point(const std::uint8_t*& i, const std::uint8_t* end, std::uint32_t& codepoint);
+    private:
+        const HuString* str;
+        const std::uint8_t* pos;
+    };
+
     class HuString
     {
     public:
@@ -188,6 +278,11 @@ namespace hutao
             }
         }
 
+        HuStringChars chars()
+        {
+            return HuStringChars(this, this->storage.data());
+        }
+
         friend std::ostream &operator<<(std::ostream &out, const HuString &s)
         {
             // out << s.id << ":" << s.name.c_str() << endl;
@@ -196,6 +291,7 @@ namespace hutao
 
         static HuString from_utf8(std::string str)
         {
+            return HuString(str);
         }
 
         static HuString with_capacity(std::size_t capacity)
@@ -207,6 +303,7 @@ namespace hutao
 
     private:
         std::vector<std::uint8_t> storage;
+        friend class HuStringChars;
     };
 }
 

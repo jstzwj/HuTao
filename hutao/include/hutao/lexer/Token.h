@@ -10,13 +10,21 @@ namespace hutao
         enum class TokenKind
         {
             LineComment,
-            BlockComment
+            BlockComment,
+            Slash,
+            Unknown,
         };
         class Token
         {
-        private:
+        public:
             TokenKind kind;
             std::size_t len;
+
+        public:
+            Token(TokenKind k, std::size_t l)
+                :kind(k), len(l)
+            {
+            }
         };
     }
 }
