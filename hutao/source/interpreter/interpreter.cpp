@@ -20,8 +20,13 @@ int main(int argc, char* argv[]) {
 
 	hutao::lexer::Cursor cursor(code);
 
-	std::cout << (int) cursor.advance_token().kind << std::endl;
-	
+	hutao::lexer::Token token;
+	for (int i = 0; i < 100; ++i) {
+		if (cursor.is_eof())
+			break;
+		token = cursor.advance_token();
+		std::cout << to_string(token.kind) << '\t' << token.len << std::endl;
+	}
 
     return 0;
 }

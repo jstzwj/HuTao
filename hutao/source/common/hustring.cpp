@@ -21,7 +21,7 @@ namespace hutao
         {
             std::uint32_t cp;
             next_code_point(pos, b + size, cp);
-            return cp;
+            return HuChar(cp);
         }
         else
         {
@@ -54,7 +54,6 @@ namespace hutao
         }
 
         std::uint8_t init = utf8_first_byte(x, 2);
-        i++;
         std::uint8_t y = get_byte_or_0(i, end);
 
         std::uint32_t ch = utf8_acc_cont_byte(init, y);
@@ -62,7 +61,6 @@ namespace hutao
         {
             // [[x y z] w] case
             // 5th bit in 0xE0 .. 0xEF is always clear, so `init` is still valid
-            i++;
             std::uint8_t z = get_byte_or_0(i, end);
             std::uint32_t y_z = utf8_acc_cont_byte(y & CONT_MASK, z);
             ch = init << 12 | y_z;

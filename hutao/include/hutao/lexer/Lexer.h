@@ -25,6 +25,7 @@ namespace hutao
 
             }
 
+            // Charactor tools
             hutao::HuStringChars chars() const { return _chars; }
 
             HuChar nth_char(std::size_t n) const
@@ -67,38 +68,20 @@ namespace hutao
                 return c;
             }
 
-            Token advance_token() {
-                hutao::HuChar first_char = bump().value();
-                TokenKind token_kind = TokenKind::Unknown;
+            // Lex methods
+            Token advance_token();
 
-                if (first_char == '/')
-                {
-                    HuChar fst = first();
-                    if (fst == '/')
-                    {
-                        token_kind = line_comment();
-                    }
-                    else if (fst == '*')
-                    {
-                        token_kind = block_comment();
-                    }
-                }
+            TokenKind whitespace();
 
-                return Token(token_kind, len_consumed());
+            TokenKind identifier_or_unknown();
 
-            }
+            TokenKind line_comment();
 
-            TokenKind line_comment()
-            {
-                bump();
-                eat_while([](HuChar c) { return c != '\n'; });
-                return TokenKind::LineComment;
-            }
+            TokenKind block_comment();
 
-            TokenKind block_comment() {
-                return TokenKind::BlockComment;
-            }
+            TokenKind number();
 
+            // Other tools
             template<class FN>
             void eat_while(FN predicate) {
                 while(predicate(first()) && !is_eof())
@@ -106,6 +89,36 @@ namespace hutao
                     bump();
                 }
             }
+
+            bool eat_decimal_digits()
+            {
+                bool has_digits = false;
+                while (true)
+                {
+                    HuChar c = first();
+                    if (c == '_') {
+                        bump();
+                    }
+                    else if (c >= '0' && c <= '9')
+                    {
+                        has_digits = true;
+                        bump();
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                return has_digits;
+            }
+
+            bool is_identifier_char(HuChar c);
+
+            bool is_identifier_start(HuChar c);
+
+            bool is_identifier_continue(HuChar c);
+
+            bool is_whitespace(HuChar c);
         };
     }
 }

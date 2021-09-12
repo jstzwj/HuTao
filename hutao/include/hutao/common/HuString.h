@@ -42,19 +42,39 @@ namespace hutao
         {
         }
 
-        HuChar(char charIn)
+        HuChar(std::uint32_t charIn)
             : code(charIn)
         {
         }
 
-        bool operator ==(char c)
+        bool operator ==(std::uint32_t c)
         {
             return c == code;
         }
 
-        bool operator !=(char c)
+        bool operator !=(std::uint32_t c)
         {
             return c != code;
+        }
+
+        bool operator < (std::uint32_t c)
+        {
+            return code < c;
+        }
+
+        bool operator > (std::uint32_t c)
+        {
+            return code > c;
+        }
+
+        bool operator <= (std::uint32_t c)
+        {
+            return code <= c;
+        }
+
+        bool operator >= (std::uint32_t c)
+        {
+            return code >= c;
         }
 
         std::size_t len_utf8() const { return len_utf8(code); }
