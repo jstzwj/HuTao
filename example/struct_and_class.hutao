@@ -1,0 +1,27 @@
+
+
+
+class Charactor
+{
+    name: str;
+    age: i32;
+    public words: str;
+    protected words2: str;
+    private words3: str;
+
+    create() -> Charactor {
+        new Charactor()
+    }
+
+    constructor(self) -> () {
+
+    }
+
+    setName(self: Self, name: str) -> () {
+
+    }
+}
+
+class HuTao extends Charactor
+{
+}

@@ -7,10 +7,16 @@ namespace hutao
 {
     namespace lexer
     {
+        enum class TokenKind
+        {
+            LineComment,
+            BlockComment
+        };
         class Token
         {
         private:
-            SourceRange range;
+            TokenKind kind;
+            std::size_t len;
         };
     }
 }

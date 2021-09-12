@@ -1,6 +1,5 @@
 
 
-include_directories(${PROJECT_SOURCE_DIR}/contrib/fmt/include)
 include_directories(${PROJECT_SOURCE_DIR}/hutao/include)
 
 add_executable(hutao-repl main.cpp)

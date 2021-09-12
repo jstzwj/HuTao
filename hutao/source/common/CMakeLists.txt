@@ -6,7 +6,6 @@ file(GLOB_RECURSE HUTAO_COMMON_HEADER ${HEADER_PATH}/*.h)
 file(GLOB_RECURSE HUTAO_COMMON_SOURCE ${SOURCE_PATH}/*.cpp)
 
 
-include_directories(${PROJECT_SOURCE_DIR}/contrib/fmt/include)
 include_directories(${PROJECT_SOURCE_DIR}/hutao/include)
 
 add_library(hutao-common STATIC ${HUTAO_COMMON_HEADER} ${HUTAO_COMMON_SOURCE})
