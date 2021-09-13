@@ -1,6 +1,6 @@
 # HuTao
-HuTao编程语言，名字来源于往生堂第七十七代堂主 - 胡桃。
-Programming language HuTao. The name is inspired from the 77th Director of the Wangsheng Funeral Parlor - Hu Tao.
+HuTao编程语言，名字来源于往生堂第七十七代堂主 - 胡桃。  
+Programming language HuTao. The name is inspired from the 77th Director of the Wangsheng Funeral Parlor - Hu Tao.  
 
 
 
