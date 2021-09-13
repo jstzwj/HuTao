@@ -260,6 +260,19 @@ namespace hutao
         const std::uint8_t* pos;
     };
 
+    class HuSpan
+    {
+    public:
+        HuSpan(std::size_t start, std::size_t len)
+            :_start(start), _len(len)
+        {
+
+        }
+    private:
+        std::size_t _start;
+        std::size_t _len;
+    };
+
     class HuString
     {
     public:
