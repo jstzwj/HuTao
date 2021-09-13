@@ -3,12 +3,18 @@ Mod ::= { ws, Stmt, ws};
 Stmt ::= FunctionDefinition
         | ClassDefinition
         | Expr, ";"
-        | Assign, ";";
+        | Assign, ";"
+        | VariableDefinition, ";";
+
 FunctionDefinition ::=  "fn", whitespaces, identifier,
     ws, "(", ws, Arguments, ws, ")", [ws, "->", ws, identifier],
-    ws, "{", ws, { Stmt }, ws, [Expr], ws, "}";
+    ws, "{", ws, { Stmt , ws } , [Expr], ws, "}";
 ClassDefinition ::= "class", ws, identifier, ws, ["extends", ws, { ",", ws, identifier }],
     ws, "{", ws, {ClassMember, ws}, "}";
+
+VariableDefinition ::= LetDefinition | ConstDefinition;
+LetDefinition ::= "let", ws, identifier, [ws, "=", ws, Expr];
+ConstDefinition ::= "const", ws, identifier, [ws, "=", ws, Expr];
 
 Arguments ::= { identifier, ws, ":", ws, identifier };
 
