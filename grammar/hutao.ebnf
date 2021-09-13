@@ -1,31 +1,53 @@
 
-Mod ::= { Stmt };
+Mod ::= { ws, Stmt, ws};
 Stmt ::= FunctionDefinition
-        | ClassDefinition;
+        | ClassDefinition
+        | Expr, ";"
+        | Assign, ";";
 FunctionDefinition ::=  "fn", whitespaces, identifier,
-    optionalws, "(", optionalws, Arguments, optionalws, ")",
-    optionalws, "{", optionalws, { Stmt }, {Expr}, [Expr], optionalws, "}";
-ClassDefinition ::= "class", identifier, ["extends", { ",", identifier }];
+    ws, "(", ws, Arguments, ws, ")", [ws, "->", ws, identifier],
+    ws, "{", ws, { Stmt }, ws, [Expr], ws, "}";
+ClassDefinition ::= "class", ws, identifier, ws, ["extends", ws, { ",", ws, identifier }],
+    ws, "{", ws, {ClassMember, ws}, "}";
 
-Expr ::= BoolOp | BinOp | UnaryOp;
-Arguments ::= { identifier, ":", identifier };
+Arguments ::= { identifier, ws, ":", ws, identifier };
 
-BoolOp ::= OrOp | AndOp;
-AndOp ::= Expr, "&&", Expr;
-OrOp ::= Expr, "||", Expr;
+ClassMember ::= ClassMemberVariable, ws, ";" | ClassMemberFunction;
 
-BinOp ::= AddOp | SubOp | MulOp;
-AddOp ::= Expr, "+", Expr;
-SubOp ::= Expr, "-", Expr;
-MulOp ::= Expr, "*", Expr;
+ClassMemberVariable ::= [ClassMemberModifier, ws], identifier, ws, ":", ws, identifier;
+ClassMemberModifier ::= "public"|"private"|"protected";
 
-UnaryOp ::= NotOp;
-NotOp ::= "!", Expr;
+ClassMemberFunction ::= identifier, ws, "(", ws, Arguments, ws, ")", ws, "->", ws, identifier,
+    ws, "{", ws, { Stmt }, ws, [Expr], ws, "}";
+
+Assign ::= Expr, [ws, "=", ws, Expr];
+
+Expr ::= BoolOp;
+
+BoolOp ::= OrOp;
+OrOp ::= AndOp, [ws, "||", ws, AndOp];
+AndOp ::= BitOrOp, [ws, "&&", ws, BitOrOp];
+
+BitOrOp ::= BitAndOp, [ws, "|", ws, BitAndOp];
+BitAndOp ::= EqOp, [ws, "&", ws, EqOp];
+
+EqOp ::= LtGtOp,[ws, ( "==" | "!="), ws, LtGtOp];
+LtGtOp ::= BinOp, [ws, (">" | "<" | ">=" | "<="), ws, BinOp];
+
+BinOp ::= AddSubOp;
+AddSubOp ::= MulDivOp, [ws, ("+" | "-"), ws, MulDivOp];
+MulDivOp ::= UnaryOp, [ws, ("*" | "/"), ws, UnaryOp];
+
+UnaryOp ::= NotOp | ParenOp;
+NotOp ::= "!", ParenOp;
+
+ParenOp ::= "(", Expr, ")" | number | identifier;
 
 identifier ::= "_" | alphabetic , [ { alphabetic | digit } ];
 alphabetic ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" |
             "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" ;
+number ::= { digit };
 digit ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
 whitespace ::= " " | "\t" | "\n";
 whitespaces ::= { whitespace };
-optionalws ::= [{ whitespace }];
+ws ::= [{ whitespace }];
