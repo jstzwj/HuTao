@@ -1,3 +1,4 @@
+conan create conan_deps/antlr4 user/channel
 if not exist build (
     mkdir build
 )

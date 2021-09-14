@@ -9,44 +9,130 @@ Programming language HuTao. The name is inspired from the 77th Director of the W
 
 
 
+## 设计 Design
+
+### Basic types
+
+| type                | size   |
+| ------------------- | ------ |
+| bool, u8, i8        | 8-bit  |
+| u16, i16, f16       | 16-bit |
+| u32, i32, char, f32 | 32-bit |
+| u64, i64, f64       | 64-bit |
+
+### Other types
+
+| type   |      |
+| ------ | ---- |
+| string |      |
+|        |      |
+|        |      |
+
+
+
+
 
 ## 例子 Example
 
 Hello World
 
-```rust
-import std.io.*;
-fn main() {
-    println("Hello world!")
+```c#
+using std.io;
+int main() {
+    println("Hello world!");
 }
 ```
 
 Two number sum
 
+```c#
+using std.io;
+i32 sum(i32 lhs, i32 rhs)
+{
+    return lhs + rhs;
+}
+auto sum(f32 lhs, f32 rhs) { return lhs + rhs; }
+int main(string[] args) {
+    println(sum(1, 2));
+}
+```
+
+Pointer
+
+```c#
+using std.io;
+void main() {
+    i32 num = 5;
+    i32 num2 = num.clone();
+    i32 num3;
+    num3.clone_from(num);
+}
+```
+
+
+
+Lambda
+
+```c#
+using std.io;
+void main() {
+    // Anonymous functions
+    auto addFn2 = (f32 lhs, f32 rhs) => {lhs + rhs}
+}
+```
+
+Sort Array
+
 ```rust
 import std.io.*;
-fn sum(lhs: i32, rhs: i32) -> i32 { lhs + rhs }
+void sort(i32[] arry) {
+	for i in 0..arry.length {
+        for j in i..arry.length {
+            let tmp = arry[i];
+            arry[i] = arry[j];
+            arry[j] = tmp;
+        }
+    }
+}
 fn main() {
-    println(sum(1, 2))
+    let myArray = new i32[15];
+    for i in 0..myArray.length { myArray[i] = 0 ; }
+    println(sumsortmyArray))
 }
 ```
 
 Class example
 
-```
+```rust
 class User {
-	pub name: str;
-	pub password: str;
+	public string name;
+	public string password;
+    
+    static User create() {
+        User()
+    }
 	
-	fn constructor() {
-		self.name = "user";
-		self.password = "123";
+	void __init__() {
+		this.name = "user";
+		this.password = "123";
+	}
+
+	void __del__() {
+
 	}
 }
 
 let user = new User();
 
 ```
+
+Template example
+
+```rust
+
+```
+
+
 
 
 

@@ -3,8 +3,14 @@
 #include <string>
 #include <fstream>
 
-#include <hutao/common/HuString.h>
-#include <hutao/lexer/Lexer.h>
+
+#include <antlr4-runtime.h>
+#include <hutao/common/hustring.h>
+#include <hutao/compiler/HuTaoLexer.h>
+#include <hutao/compiler/HuTaoParser.h>
+
+
+using namespace antlr4;
 
 int main(int argc, char* argv[]) {
 	std::string inputFile = "example.hutao";
@@ -18,15 +24,10 @@ int main(int argc, char* argv[]) {
 	std::string rawSourceCode((std::istreambuf_iterator<char>(fin)), std::istreambuf_iterator<char>());
 	hutao::HuString code = hutao::HuString::from_utf8(rawSourceCode);
 
-	hutao::lexer::Cursor cursor(code);
-
-	hutao::lexer::Token token;
-	for (int i = 0; i < 100; ++i) {
-		if (cursor.is_eof())
-			break;
-		token = cursor.advance_token();
-		std::cout << to_string(token.kind) << '\t' << token.len << std::endl;
-	}
+	ANTLRInputStream input(fin);
+	HuTaoLexer lexer(&input);
+	CommonTokenStream tokens(&lexer);
+	HuTaoParser parser(&tokens);
 
     return 0;
 }
