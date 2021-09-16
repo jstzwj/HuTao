@@ -22,11 +22,14 @@ Programming language HuTao. The name is inspired from the 77th Director of the W
 
 ### Other types
 
-| type   |      |
-| ------ | ---- |
-| string |      |
-|        |      |
-|        |      |
+| type   |                                                        |
+| ------ | ------------------------------------------------------ |
+| string | Variable length, Disable random access, UTF-8 Internal |
+| enum   |                                                        |
+| struct |                                                        |
+| class  |                                                        |
+| tuple  |                                                        |
+| array  |                                                        |
 
 
 
@@ -51,11 +54,34 @@ i32 sum(i32 lhs, i32 rhs)
 {
     return lhs + rhs;
 }
-auto sum(f32 lhs, f32 rhs) { return lhs + rhs; }
+auto sum(f32 lhs, f32 rhs) { lhs + rhs }
 int main(string[] args) {
     println(sum(1, 2));
 }
 ```
+
+Control Flow
+
+```
+
+int main(string[] args) {
+	i32 a = 0;
+	f32 b = a;
+    if a == 1 {
+    	b = 1;
+    } else {
+    	b = 5;
+    }
+    
+    if (b > 1) {
+    	
+    }
+    
+    
+}
+```
+
+
 
 Pointer
 
@@ -69,8 +95,6 @@ void main() {
 }
 ```
 
-
-
 Lambda
 
 ```c#
@@ -81,48 +105,74 @@ void main() {
 }
 ```
 
-Sort Array
+Enum
 
 ```rust
-import std.io.*;
-void sort(i32[] arry) {
-	for i in 0..arry.length {
-        for j in i..arry.length {
-            let tmp = arry[i];
-            arry[i] = arry[j];
-            arry[j] = tmp;
+enum Color {
+    Red,
+    Yellow,
+    Green,
+    Blue
+}
+
+enum Object {
+    Float(f32),
+    Integer(i32),
+	Boolean(bool),
+    Complex(f32, f32),
+}
+
+Object getObject(f32 number) { Object::Float(number) }
+Object getObject(i32 number) { Object::Integer(number) }
+Object getObject(f32 real, f32 imag) { Object::Complex(real, imag) }
+
+f64 toDouble(Object o) {
+    match(o) {
+        Object::Float(f) => f as f64,
+        Object::Integer(i) => i as f64,
+        Object::Boolean(b) => {
+            if b {1} else {0}
         }
+        _ => throw std.except.RuntimeException("Can not convert Complex to double")
     }
 }
-fn main() {
-    let myArray = new i32[15];
-    for i in 0..myArray.length { myArray[i] = 0 ; }
-    println(sumsortmyArray))
+
+enum Character {
+    zhongli{name: string, age: i32},
+    venti{name: string, age: i32},
+	raiden_shogun{name: string, age: i32},
 }
 ```
 
-Class example
+Tuple
+
+```c#
+(i32, f32) tuple1 = (8i32, 9f32);
+auto tuple2 = (1, 2);
+auto tuple3 = ("hello", 4, 8f32);
+```
+
+
+
+Struct Class example
 
 ```rust
 class User {
-	public string name;
-	public string password;
+	public string _name;
+	public string _password;
     
     static User create() {
-        User()
+        new User()
     }
 	
-	void __init__() {
-		this.name = "user";
-		this.password = "123";
-	}
-
-	void __del__() {
-
-	}
+	public Person(string name, string password)
+   	{
+		_name = lastName;
+		_password = password;
+  	}
 }
 
-let user = new User();
+auto user = new User();
 
 ```
 
