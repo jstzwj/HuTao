@@ -13,44 +13,37 @@ class  HuTaoParser : public antlr4::Parser {
 public:
   enum {
     SINGLE_LINE_DOC_COMMENT = 1, EMPTY_DELIMITED_DOC_COMMENT = 2, DELIMITED_DOC_COMMENT = 3, 
-    SINGLE_LINE_COMMENT = 4, DELIMITED_COMMENT = 5, WHITESPACES = 6, SHARP = 7, 
-    ABSTRACT = 8, ADD = 9, ALIAS = 10, AS = 11, ASCENDING = 12, ASYNC = 13, 
-    AWAIT = 14, BASE = 15, BOOL = 16, BREAK = 17, BY = 18, CASE = 19, CATCH = 20, 
-    CHECKED = 21, CLASS = 22, CONST = 23, CONTINUE = 24, DEFAULT = 25, DELEGATE = 26, 
-    DESCENDING = 27, DO = 28, ELSE = 29, ENUM = 30, EQUALS = 31, EVENT = 32, 
-    EXPLICIT = 33, EXTERN = 34, FALSE = 35, FINALLY = 36, FIXED = 37, FOR = 38, 
-    FOREACH = 39, FROM = 40, GET = 41, GOTO = 42, GROUP = 43, IF = 44, IMPLICIT = 45, 
-    IN = 46, INTERFACE = 47, INTERNAL = 48, INTO = 49, IS = 50, JOIN = 51, 
-    LET = 52, LOCK = 53, NAMEOF = 54, NAMESPACE = 55, NEW = 56, NULL_ = 57, 
-    OBJECT = 58, ON = 59, OPERATOR = 60, ORDERBY = 61, OUT = 62, OVERRIDE = 63, 
-    PARAMS = 64, PARTIAL = 65, PRIVATE = 66, PROTECTED = 67, PUBLIC = 68, 
-    READONLY = 69, REF = 70, REMOVE = 71, RETURN = 72, SEALED = 73, SELECT = 74, 
-    SET = 75, SIZEOF = 76, STACKALLOC = 77, STATIC = 78, STRING = 79, STRUCT = 80, 
-    SWITCH = 81, THIS = 82, THROW = 83, TRUE = 84, TRY = 85, TYPEOF = 86, 
-    UNCHECKED = 87, UNMANAGED = 88, UNSAFE = 89, USING = 90, VAR = 91, VIRTUAL = 92, 
-    VOID = 93, VOLATILE = 94, WHEN = 95, WHERE = 96, WHILE = 97, YIELD = 98, 
-    IDENTIFIER = 99, LITERAL_ACCESS = 100, INTEGER_LITERAL = 101, HEX_INTEGER_LITERAL = 102, 
-    BIN_INTEGER_LITERAL = 103, REAL_LITERAL = 104, CHARACTER_LITERAL = 105, 
-    REGULAR_STRING = 106, VERBATIUM_STRING = 107, U8 = 108, I8 = 109, U16 = 110, 
-    I16 = 111, U32 = 112, I32 = 113, U64 = 114, I64 = 115, F32 = 116, F64 = 117, 
-    CHAR = 118, OPEN_BRACE = 119, CLOSE_BRACE = 120, OPEN_BRACKET = 121, 
-    CLOSE_BRACKET = 122, OPEN_PARENS = 123, CLOSE_PARENS = 124, DOT = 125, 
-    COMMA = 126, COLON = 127, SEMICOLON = 128, PLUS = 129, MINUS = 130, 
-    STAR = 131, DIV = 132, PERCENT = 133, AMP = 134, BITWISE_OR = 135, CARET = 136, 
-    BANG = 137, TILDE = 138, ASSIGNMENT = 139, LT = 140, GT = 141, INTERR = 142, 
-    DOUBLE_COLON = 143, OP_COALESCING = 144, OP_INC = 145, OP_DEC = 146, 
-    OP_AND = 147, OP_OR = 148, OP_PTR = 149, OP_EQ = 150, OP_NE = 151, OP_LE = 152, 
-    OP_GE = 153, OP_ADD_ASSIGNMENT = 154, OP_SUB_ASSIGNMENT = 155, OP_MULT_ASSIGNMENT = 156, 
-    OP_DIV_ASSIGNMENT = 157, OP_MOD_ASSIGNMENT = 158, OP_AND_ASSIGNMENT = 159, 
-    OP_OR_ASSIGNMENT = 160, OP_XOR_ASSIGNMENT = 161, OP_LEFT_SHIFT = 162, 
-    OP_LEFT_SHIFT_ASSIGNMENT = 163, OP_COALESCING_ASSIGNMENT = 164, OP_RANGE = 165, 
-    DOUBLE_CURLY_INSIDE = 166, OPEN_BRACE_INSIDE = 167, REGULAR_CHAR_INSIDE = 168, 
-    VERBATIUM_DOUBLE_QUOTE_INSIDE = 169, DOUBLE_QUOTE_INSIDE = 170, REGULAR_STRING_INSIDE = 171, 
-    VERBATIUM_INSIDE_STRING = 172, DOUBLE_CURLY_CLOSE_INSIDE = 173, CLOSE_BRACE_INSIDE = 174, 
-    FORMAT_STRING = 175, DIRECTIVE_WHITESPACES = 176, DIGITS = 177, DEFINE = 178, 
-    UNDEF = 179, ELIF = 180, ENDIF = 181, LINE = 182, ERROR = 183, WARNING = 184, 
-    REGION = 185, ENDREGION = 186, PRAGMA = 187, NULLABLE = 188, DIRECTIVE_HIDDEN = 189, 
-    CONDITIONAL_SYMBOL = 190, DIRECTIVE_NEW_LINE = 191, TEXT = 192
+    SINGLE_LINE_COMMENT = 4, DELIMITED_COMMENT = 5, WHITESPACES = 6, ABSTRACT = 7, 
+    ADD = 8, ALIAS = 9, AS = 10, ASCENDING = 11, ASYNC = 12, AWAIT = 13, 
+    BASE = 14, BOOL = 15, BREAK = 16, BY = 17, CASE = 18, CATCH = 19, CHECKED = 20, 
+    CLASS = 21, CONST = 22, CONTINUE = 23, DEFAULT = 24, DELEGATE = 25, 
+    DESCENDING = 26, DO = 27, ELSE = 28, ENUM = 29, EQUALS = 30, EVENT = 31, 
+    EXPLICIT = 32, EXTERN = 33, FALSE = 34, FINALLY = 35, FIXED = 36, FOR = 37, 
+    FOREACH = 38, FROM = 39, GET = 40, GOTO = 41, GROUP = 42, IF = 43, IMPLICIT = 44, 
+    IN = 45, INTERFACE = 46, INTERNAL = 47, INTO = 48, IS = 49, JOIN = 50, 
+    LET = 51, LOCK = 52, NAMEOF = 53, NAMESPACE = 54, NEW = 55, NULL_ = 56, 
+    OBJECT = 57, ON = 58, OPERATOR = 59, ORDERBY = 60, OUT = 61, OVERRIDE = 62, 
+    PARAMS = 63, PARTIAL = 64, PRIVATE = 65, PROTECTED = 66, PUBLIC = 67, 
+    READONLY = 68, REF = 69, REMOVE = 70, RETURN = 71, SEALED = 72, SELECT = 73, 
+    SET = 74, SIZEOF = 75, STACKALLOC = 76, STATIC = 77, STRING = 78, STRUCT = 79, 
+    SWITCH = 80, THIS = 81, THROW = 82, TRUE = 83, TRY = 84, TYPEOF = 85, 
+    UNCHECKED = 86, UNMANAGED = 87, UNSAFE = 88, USING = 89, VAR = 90, VIRTUAL = 91, 
+    VOID = 92, VOLATILE = 93, WHEN = 94, WHERE = 95, WHILE = 96, YIELD = 97, 
+    IDENTIFIER = 98, LITERAL_ACCESS = 99, INTEGER_LITERAL = 100, HEX_INTEGER_LITERAL = 101, 
+    BIN_INTEGER_LITERAL = 102, REAL_LITERAL = 103, CHARACTER_LITERAL = 104, 
+    REGULAR_STRING = 105, VERBATIUM_STRING = 106, U8 = 107, I8 = 108, U16 = 109, 
+    I16 = 110, U32 = 111, I32 = 112, U64 = 113, I64 = 114, F32 = 115, F64 = 116, 
+    CHAR = 117, OPEN_BRACE = 118, CLOSE_BRACE = 119, OPEN_BRACKET = 120, 
+    CLOSE_BRACKET = 121, OPEN_PARENS = 122, CLOSE_PARENS = 123, DOT = 124, 
+    COMMA = 125, COLON = 126, SEMICOLON = 127, PLUS = 128, MINUS = 129, 
+    STAR = 130, DIV = 131, PERCENT = 132, AMP = 133, BITWISE_OR = 134, CARET = 135, 
+    BANG = 136, TILDE = 137, ASSIGNMENT = 138, LT = 139, GT = 140, INTERR = 141, 
+    DOUBLE_COLON = 142, OP_COALESCING = 143, OP_INC = 144, OP_DEC = 145, 
+    OP_AND = 146, OP_OR = 147, OP_PTR = 148, OP_EQ = 149, OP_NE = 150, OP_LE = 151, 
+    OP_GE = 152, OP_ADD_ASSIGNMENT = 153, OP_SUB_ASSIGNMENT = 154, OP_MULT_ASSIGNMENT = 155, 
+    OP_DIV_ASSIGNMENT = 156, OP_MOD_ASSIGNMENT = 157, OP_AND_ASSIGNMENT = 158, 
+    OP_OR_ASSIGNMENT = 159, OP_XOR_ASSIGNMENT = 160, OP_LEFT_SHIFT = 161, 
+    OP_LEFT_SHIFT_ASSIGNMENT = 162, OP_COALESCING_ASSIGNMENT = 163, OP_RANGE = 164
   };
 
   enum {
@@ -91,48 +84,46 @@ public:
     RuleFor_initializer = 96, RuleFor_iterator = 97, RuleCatch_clauses = 98, 
     RuleSpecific_catch_clause = 99, RuleGeneral_catch_clause = 100, RuleException_filter = 101, 
     RuleFinally_clause = 102, RuleResource_acquisition = 103, RuleNamespace_declaration = 104, 
-    RuleQualified_identifier = 105, RuleNamespace_body = 106, RuleExtern_alias_directives = 107, 
-    RuleExtern_alias_directive = 108, RuleUsing_directives = 109, RuleUsing_directive = 110, 
-    RuleNamespace_member_declarations = 111, RuleNamespace_member_declaration = 112, 
-    RuleType_declaration = 113, RuleQualified_alias_member = 114, RuleType_parameter_list = 115, 
-    RuleType_parameter = 116, RuleClass_base = 117, RuleInterface_type_list = 118, 
-    RuleType_parameter_constraints_clauses = 119, RuleType_parameter_constraints_clause = 120, 
-    RuleType_parameter_constraints = 121, RulePrimary_constraint = 122, 
-    RuleSecondary_constraints = 123, RuleConstructor_constraint = 124, RuleClass_body = 125, 
-    RuleClass_member_declarations = 126, RuleClass_member_declaration = 127, 
-    RuleAll_member_modifiers = 128, RuleAll_member_modifier = 129, RuleCommon_member_declaration = 130, 
-    RuleTyped_member_declaration = 131, RuleConstant_declarators = 132, 
-    RuleConstant_declarator = 133, RuleVariable_declarators = 134, RuleVariable_declarator = 135, 
-    RuleVariable_initializer = 136, RuleReturn_type = 137, RuleMember_name = 138, 
-    RuleMethod_body = 139, RuleFormal_parameter_list = 140, RuleFixed_parameters = 141, 
-    RuleFixed_parameter = 142, RuleParameter_modifier = 143, RuleParameter_array = 144, 
-    RuleAccessor_declarations = 145, RuleGet_accessor_declaration = 146, 
-    RuleSet_accessor_declaration = 147, RuleAccessor_modifier = 148, RuleAccessor_body = 149, 
-    RuleEvent_accessor_declarations = 150, RuleAdd_accessor_declaration = 151, 
-    RuleRemove_accessor_declaration = 152, RuleOverloadable_operator = 153, 
-    RuleConversion_operator_declarator = 154, RuleConstructor_initializer = 155, 
-    RuleBody = 156, RuleStruct_interfaces = 157, RuleStruct_body = 158, 
-    RuleStruct_member_declaration = 159, RuleArray_type = 160, RuleRank_specifier = 161, 
-    RuleArray_initializer = 162, RuleVariant_type_parameter_list = 163, 
-    RuleVariant_type_parameter = 164, RuleVariance_annotation = 165, RuleInterface_base = 166, 
-    RuleInterface_body = 167, RuleInterface_member_declaration = 168, RuleInterface_accessors = 169, 
-    RuleEnum_base = 170, RuleEnum_body = 171, RuleEnum_member_declaration = 172, 
-    RuleGlobal_attribute_section = 173, RuleGlobal_attribute_target = 174, 
-    RuleAttributes = 175, RuleAttribute_section = 176, RuleAttribute_target = 177, 
-    RuleAttribute_list = 178, RuleAttribute = 179, RuleAttribute_argument = 180, 
-    RulePointer_type = 181, RuleFixed_pointer_declarators = 182, RuleFixed_pointer_declarator = 183, 
-    RuleFixed_pointer_initializer = 184, RuleFixed_size_buffer_declarator = 185, 
-    RuleStackalloc_initializer = 186, RuleRight_arrow = 187, RuleRight_shift = 188, 
-    RuleRight_shift_assignment = 189, RuleLiteral = 190, RuleBoolean_literal = 191, 
-    RuleString_literal = 192, RuleInterpolated_regular_string_part = 193, 
-    RuleInterpolated_verbatium_string_part = 194, RuleInterpolated_string_expression = 195, 
-    RuleKeyword = 196, RuleClass_definition = 197, RuleStruct_definition = 198, 
-    RuleInterface_definition = 199, RuleEnum_definition = 200, RuleDelegate_definition = 201, 
-    RuleEvent_declaration = 202, RuleField_declaration = 203, RuleProperty_declaration = 204, 
-    RuleConstant_declaration = 205, RuleIndexer_declaration = 206, RuleDestructor_definition = 207, 
-    RuleConstructor_declaration = 208, RuleMethod_declaration = 209, RuleMethod_member_name = 210, 
-    RuleOperator_declaration = 211, RuleArg_declaration = 212, RuleMethod_invocation = 213, 
-    RuleObject_creation_expression = 214, RuleIdentifier = 215
+    RuleQualified_identifier = 105, RuleNamespace_body = 106, RuleExtern_alias_directive = 107, 
+    RuleUsing_directives = 108, RuleUsing_directive = 109, RuleNamespace_member_declarations = 110, 
+    RuleNamespace_member_declaration = 111, RuleType_declaration = 112, 
+    RuleQualified_alias_member = 113, RuleType_parameter_list = 114, RuleType_parameter = 115, 
+    RuleClass_base = 116, RuleInterface_type_list = 117, RuleType_parameter_constraints_clauses = 118, 
+    RuleType_parameter_constraints_clause = 119, RuleType_parameter_constraints = 120, 
+    RulePrimary_constraint = 121, RuleSecondary_constraints = 122, RuleConstructor_constraint = 123, 
+    RuleClass_body = 124, RuleClass_member_declarations = 125, RuleClass_member_declaration = 126, 
+    RuleAll_member_modifiers = 127, RuleAll_member_modifier = 128, RuleCommon_member_declaration = 129, 
+    RuleTyped_member_declaration = 130, RuleConstant_declarators = 131, 
+    RuleConstant_declarator = 132, RuleVariable_declarators = 133, RuleVariable_declarator = 134, 
+    RuleVariable_initializer = 135, RuleReturn_type = 136, RuleMember_name = 137, 
+    RuleMethod_body = 138, RuleFormal_parameter_list = 139, RuleFixed_parameters = 140, 
+    RuleFixed_parameter = 141, RuleParameter_modifier = 142, RuleParameter_array = 143, 
+    RuleAccessor_declarations = 144, RuleGet_accessor_declaration = 145, 
+    RuleSet_accessor_declaration = 146, RuleAccessor_modifier = 147, RuleAccessor_body = 148, 
+    RuleEvent_accessor_declarations = 149, RuleAdd_accessor_declaration = 150, 
+    RuleRemove_accessor_declaration = 151, RuleOverloadable_operator = 152, 
+    RuleConversion_operator_declarator = 153, RuleConstructor_initializer = 154, 
+    RuleBody = 155, RuleStruct_interfaces = 156, RuleStruct_body = 157, 
+    RuleStruct_member_declaration = 158, RuleArray_type = 159, RuleRank_specifier = 160, 
+    RuleArray_initializer = 161, RuleVariant_type_parameter_list = 162, 
+    RuleVariant_type_parameter = 163, RuleVariance_annotation = 164, RuleInterface_base = 165, 
+    RuleInterface_body = 166, RuleInterface_member_declaration = 167, RuleInterface_accessors = 168, 
+    RuleEnum_base = 169, RuleEnum_body = 170, RuleEnum_member_declaration = 171, 
+    RuleGlobal_attribute_section = 172, RuleGlobal_attribute_target = 173, 
+    RuleAttributes = 174, RuleAttribute_section = 175, RuleAttribute_target = 176, 
+    RuleAttribute_list = 177, RuleAttribute = 178, RuleAttribute_argument = 179, 
+    RulePointer_type = 180, RuleFixed_pointer_declarators = 181, RuleFixed_pointer_declarator = 182, 
+    RuleFixed_pointer_initializer = 183, RuleFixed_size_buffer_declarator = 184, 
+    RuleStackalloc_initializer = 185, RuleRight_arrow = 186, RuleRight_shift = 187, 
+    RuleRight_shift_assignment = 188, RuleLiteral = 189, RuleBoolean_literal = 190, 
+    RuleString_literal = 191, RuleKeyword = 192, RuleClass_definition = 193, 
+    RuleStruct_definition = 194, RuleInterface_definition = 195, RuleEnum_definition = 196, 
+    RuleDelegate_definition = 197, RuleEvent_declaration = 198, RuleField_declaration = 199, 
+    RuleProperty_declaration = 200, RuleConstant_declaration = 201, RuleIndexer_declaration = 202, 
+    RuleDestructor_definition = 203, RuleConstructor_declaration = 204, 
+    RuleMethod_declaration = 205, RuleMethod_member_name = 206, RuleOperator_declaration = 207, 
+    RuleArg_declaration = 208, RuleMethod_invocation = 209, RuleObject_creation_expression = 210, 
+    RuleIdentifier = 211
   };
 
   explicit HuTaoParser(antlr4::TokenStream *input);
@@ -252,7 +243,6 @@ public:
   class Namespace_declarationContext;
   class Qualified_identifierContext;
   class Namespace_bodyContext;
-  class Extern_alias_directivesContext;
   class Extern_alias_directiveContext;
   class Using_directivesContext;
   class Using_directiveContext;
@@ -338,9 +328,6 @@ public:
   class LiteralContext;
   class Boolean_literalContext;
   class String_literalContext;
-  class Interpolated_regular_string_partContext;
-  class Interpolated_verbatium_string_partContext;
-  class Interpolated_string_expressionContext;
   class KeywordContext;
   class Class_definitionContext;
   class Struct_definitionContext;
@@ -367,10 +354,7 @@ public:
     Compilation_unitContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *EOF();
-    Extern_alias_directivesContext *extern_alias_directives();
     Using_directivesContext *using_directives();
-    std::vector<Global_attribute_sectionContext *> global_attribute_section();
-    Global_attribute_sectionContext* global_attribute_section(size_t i);
     Namespace_member_declarationsContext *namespace_member_declarations();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -2605,7 +2589,6 @@ public:
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *OPEN_BRACE();
     antlr4::tree::TerminalNode *CLOSE_BRACE();
-    Extern_alias_directivesContext *extern_alias_directives();
     Using_directivesContext *using_directives();
     Namespace_member_declarationsContext *namespace_member_declarations();
 
@@ -2615,20 +2598,6 @@ public:
   };
 
   Namespace_bodyContext* namespace_body();
-
-  class  Extern_alias_directivesContext : public antlr4::ParserRuleContext {
-  public:
-    Extern_alias_directivesContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<Extern_alias_directiveContext *> extern_alias_directive();
-    Extern_alias_directiveContext* extern_alias_directive(size_t i);
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  Extern_alias_directivesContext* extern_alias_directives();
 
   class  Extern_alias_directiveContext : public antlr4::ParserRuleContext {
   public:
@@ -2663,50 +2632,16 @@ public:
   class  Using_directiveContext : public antlr4::ParserRuleContext {
   public:
     Using_directiveContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-   
-    Using_directiveContext() = default;
-    void copyFrom(Using_directiveContext *context);
-    using antlr4::ParserRuleContext::copyFrom;
-
     virtual size_t getRuleIndex() const override;
-
-   
-  };
-
-  class  UsingAliasDirectiveContext : public Using_directiveContext {
-  public:
-    UsingAliasDirectiveContext(Using_directiveContext *ctx);
-
     antlr4::tree::TerminalNode *USING();
     IdentifierContext *identifier();
     antlr4::tree::TerminalNode *ASSIGNMENT();
     Namespace_or_type_nameContext *namespace_or_type_name();
     antlr4::tree::TerminalNode *SEMICOLON();
+
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-  };
-
-  class  UsingNamespaceDirectiveContext : public Using_directiveContext {
-  public:
-    UsingNamespaceDirectiveContext(Using_directiveContext *ctx);
-
-    antlr4::tree::TerminalNode *USING();
-    Namespace_or_type_nameContext *namespace_or_type_name();
-    antlr4::tree::TerminalNode *SEMICOLON();
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-  };
-
-  class  UsingStaticDirectiveContext : public Using_directiveContext {
-  public:
-    UsingStaticDirectiveContext(Using_directiveContext *ctx);
-
-    antlr4::tree::TerminalNode *USING();
-    antlr4::tree::TerminalNode *STATIC();
-    Namespace_or_type_nameContext *namespace_or_type_name();
-    antlr4::tree::TerminalNode *SEMICOLON();
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
   };
 
   Using_directiveContext* using_directive();
@@ -4088,57 +4023,6 @@ public:
   };
 
   String_literalContext* string_literal();
-
-  class  Interpolated_regular_string_partContext : public antlr4::ParserRuleContext {
-  public:
-    Interpolated_regular_string_partContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    Interpolated_string_expressionContext *interpolated_string_expression();
-    antlr4::tree::TerminalNode *DOUBLE_CURLY_INSIDE();
-    antlr4::tree::TerminalNode *REGULAR_CHAR_INSIDE();
-    antlr4::tree::TerminalNode *REGULAR_STRING_INSIDE();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  Interpolated_regular_string_partContext* interpolated_regular_string_part();
-
-  class  Interpolated_verbatium_string_partContext : public antlr4::ParserRuleContext {
-  public:
-    Interpolated_verbatium_string_partContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    Interpolated_string_expressionContext *interpolated_string_expression();
-    antlr4::tree::TerminalNode *DOUBLE_CURLY_INSIDE();
-    antlr4::tree::TerminalNode *VERBATIUM_DOUBLE_QUOTE_INSIDE();
-    antlr4::tree::TerminalNode *VERBATIUM_INSIDE_STRING();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  Interpolated_verbatium_string_partContext* interpolated_verbatium_string_part();
-
-  class  Interpolated_string_expressionContext : public antlr4::ParserRuleContext {
-  public:
-    Interpolated_string_expressionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    std::vector<ExpressionContext *> expression();
-    ExpressionContext* expression(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> COMMA();
-    antlr4::tree::TerminalNode* COMMA(size_t i);
-    antlr4::tree::TerminalNode *COLON();
-    std::vector<antlr4::tree::TerminalNode *> FORMAT_STRING();
-    antlr4::tree::TerminalNode* FORMAT_STRING(size_t i);
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  Interpolated_string_expressionContext* interpolated_string_expression();
 
   class  KeywordContext : public antlr4::ParserRuleContext {
   public:

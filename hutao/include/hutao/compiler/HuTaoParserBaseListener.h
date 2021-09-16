@@ -442,23 +442,14 @@ public:
   virtual void enterNamespace_body(HuTaoParser::Namespace_bodyContext * /*ctx*/) override { }
   virtual void exitNamespace_body(HuTaoParser::Namespace_bodyContext * /*ctx*/) override { }
 
-  virtual void enterExtern_alias_directives(HuTaoParser::Extern_alias_directivesContext * /*ctx*/) override { }
-  virtual void exitExtern_alias_directives(HuTaoParser::Extern_alias_directivesContext * /*ctx*/) override { }
-
   virtual void enterExtern_alias_directive(HuTaoParser::Extern_alias_directiveContext * /*ctx*/) override { }
   virtual void exitExtern_alias_directive(HuTaoParser::Extern_alias_directiveContext * /*ctx*/) override { }
 
   virtual void enterUsing_directives(HuTaoParser::Using_directivesContext * /*ctx*/) override { }
   virtual void exitUsing_directives(HuTaoParser::Using_directivesContext * /*ctx*/) override { }
 
-  virtual void enterUsingAliasDirective(HuTaoParser::UsingAliasDirectiveContext * /*ctx*/) override { }
-  virtual void exitUsingAliasDirective(HuTaoParser::UsingAliasDirectiveContext * /*ctx*/) override { }
-
-  virtual void enterUsingNamespaceDirective(HuTaoParser::UsingNamespaceDirectiveContext * /*ctx*/) override { }
-  virtual void exitUsingNamespaceDirective(HuTaoParser::UsingNamespaceDirectiveContext * /*ctx*/) override { }
-
-  virtual void enterUsingStaticDirective(HuTaoParser::UsingStaticDirectiveContext * /*ctx*/) override { }
-  virtual void exitUsingStaticDirective(HuTaoParser::UsingStaticDirectiveContext * /*ctx*/) override { }
+  virtual void enterUsing_directive(HuTaoParser::Using_directiveContext * /*ctx*/) override { }
+  virtual void exitUsing_directive(HuTaoParser::Using_directiveContext * /*ctx*/) override { }
 
   virtual void enterNamespace_member_declarations(HuTaoParser::Namespace_member_declarationsContext * /*ctx*/) override { }
   virtual void exitNamespace_member_declarations(HuTaoParser::Namespace_member_declarationsContext * /*ctx*/) override { }
@@ -705,15 +696,6 @@ public:
 
   virtual void enterString_literal(HuTaoParser::String_literalContext * /*ctx*/) override { }
   virtual void exitString_literal(HuTaoParser::String_literalContext * /*ctx*/) override { }
-
-  virtual void enterInterpolated_regular_string_part(HuTaoParser::Interpolated_regular_string_partContext * /*ctx*/) override { }
-  virtual void exitInterpolated_regular_string_part(HuTaoParser::Interpolated_regular_string_partContext * /*ctx*/) override { }
-
-  virtual void enterInterpolated_verbatium_string_part(HuTaoParser::Interpolated_verbatium_string_partContext * /*ctx*/) override { }
-  virtual void exitInterpolated_verbatium_string_part(HuTaoParser::Interpolated_verbatium_string_partContext * /*ctx*/) override { }
-
-  virtual void enterInterpolated_string_expression(HuTaoParser::Interpolated_string_expressionContext * /*ctx*/) override { }
-  virtual void exitInterpolated_string_expression(HuTaoParser::Interpolated_string_expressionContext * /*ctx*/) override { }
 
   virtual void enterKeyword(HuTaoParser::KeywordContext * /*ctx*/) override { }
   virtual void exitKeyword(HuTaoParser::KeywordContext * /*ctx*/) override { }

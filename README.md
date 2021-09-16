@@ -1,5 +1,6 @@
 # HuTao
-HuTao编程语言，名字来源于往生堂第七十七代堂主 - 胡桃。  
+HuTao编程语言，名字来源于往生堂第七十七代堂主 - 胡桃。
+
 Programming language HuTao. The name is inspired from the 77th Director of the Wangsheng Funeral Parlor - Hu Tao.  
 
 
@@ -63,20 +64,21 @@ int main(string[] args) {
 Control Flow
 
 ```
+void BubbleSort(i32 arry[])
+{
+	for (int i = 0; i < arry.length - 1; i++)
+	{
+		for (int j = arry.length - 1; j >= i;j--)
+		{
+			if (array[j - 1]>array[j]) {
+				swap(array, j, j - 1);
+            }
+		}
+	}
+}
+
 
 int main(string[] args) {
-	i32 a = 0;
-	f32 b = a;
-    if a == 1 {
-    	b = 1;
-    } else {
-    	b = 5;
-    }
-    
-    if (b > 1) {
-    	
-    }
-    
     
 }
 ```
@@ -89,9 +91,8 @@ Pointer
 using std.io;
 void main() {
     i32 num = 5;
-    i32 num2 = num.clone();
-    i32 num3;
-    num3.clone_from(num);
+    i32* num_ptr = &num;
+    i32 num_ptr2 = new i32(5);
 }
 ```
 

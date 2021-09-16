@@ -4,8 +4,7 @@ options { tokenVocab=HuTaoLexer; }
 
 // entry point
 compilation_unit
-	: extern_alias_directives? using_directives?
-	  global_attribute_section* namespace_member_declarations? EOF
+	: using_directives? namespace_member_declarations? EOF
 	;
 
 //B.2 Syntactic grammar
@@ -168,7 +167,6 @@ range_expression
     | unary_expression? OP_RANGE unary_expression?
     ;
 
-// https://msdn.microsoft.com/library/6a71f45d(v=vs.110).aspx
 unary_expression
 	: primary_expression
 	| '+' unary_expression
@@ -184,7 +182,7 @@ unary_expression
 	| '^' unary_expression // C# 8 ranges
 	;
 
-primary_expression  // Null-conditional operators C# 6: https://msdn.microsoft.com/en-us/library/dn986595.aspx
+primary_expression
 	: pe=primary_expression_start '!'? bracket_expression* '!'?
 	  (((member_access | method_invocation | '++' | '--' | '->' identifier) '!'?) bracket_expression* '!'?)*
 	;
@@ -556,11 +554,7 @@ qualified_identifier
 	;
 
 namespace_body
-	: OPEN_BRACE extern_alias_directives? using_directives? namespace_member_declarations? CLOSE_BRACE
-	;
-
-extern_alias_directives
-	: extern_alias_directive+
+	: OPEN_BRACE using_directives? namespace_member_declarations? CLOSE_BRACE
 	;
 
 extern_alias_directive
@@ -572,10 +566,8 @@ using_directives
 	;
 
 using_directive
-	: USING identifier '=' namespace_or_type_name ';'            #usingAliasDirective
-	| USING namespace_or_type_name ';'                           #usingNamespaceDirective
-	// C# 6: https://msdn.microsoft.com/en-us/library/ms228593.aspx
-	| USING STATIC namespace_or_type_name ';'                    #usingStaticDirective
+	: USING identifier '=' namespace_or_type_name ';'
+	| USING namespace_or_type_name ';'
 	;
 
 namespace_member_declarations
@@ -674,7 +666,7 @@ all_member_modifier
 	| UNSAFE
 	| EXTERN
 	| PARTIAL
-	| ASYNC  // C# 5
+	| ASYNC
 	;
 
 // represents the intersection of struct_member_declaration and class_member_declaration
@@ -1011,24 +1003,6 @@ boolean_literal
 string_literal
 	: REGULAR_STRING
 	| VERBATIUM_STRING
-	;
-
-interpolated_regular_string_part
-	: interpolated_string_expression
-	| DOUBLE_CURLY_INSIDE
-	| REGULAR_CHAR_INSIDE
-	| REGULAR_STRING_INSIDE
-	;
-
-interpolated_verbatium_string_part
-	: interpolated_string_expression
-	| DOUBLE_CURLY_INSIDE
-	| VERBATIUM_DOUBLE_QUOTE_INSIDE
-	| VERBATIUM_INSIDE_STRING
-	;
-
-interpolated_string_expression
-	: expression (',' expression)* (':' FORMAT_STRING+)?
 	;
 
 //B.1.7 Keywords

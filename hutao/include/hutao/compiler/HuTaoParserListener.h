@@ -440,23 +440,14 @@ public:
   virtual void enterNamespace_body(HuTaoParser::Namespace_bodyContext *ctx) = 0;
   virtual void exitNamespace_body(HuTaoParser::Namespace_bodyContext *ctx) = 0;
 
-  virtual void enterExtern_alias_directives(HuTaoParser::Extern_alias_directivesContext *ctx) = 0;
-  virtual void exitExtern_alias_directives(HuTaoParser::Extern_alias_directivesContext *ctx) = 0;
-
   virtual void enterExtern_alias_directive(HuTaoParser::Extern_alias_directiveContext *ctx) = 0;
   virtual void exitExtern_alias_directive(HuTaoParser::Extern_alias_directiveContext *ctx) = 0;
 
   virtual void enterUsing_directives(HuTaoParser::Using_directivesContext *ctx) = 0;
   virtual void exitUsing_directives(HuTaoParser::Using_directivesContext *ctx) = 0;
 
-  virtual void enterUsingAliasDirective(HuTaoParser::UsingAliasDirectiveContext *ctx) = 0;
-  virtual void exitUsingAliasDirective(HuTaoParser::UsingAliasDirectiveContext *ctx) = 0;
-
-  virtual void enterUsingNamespaceDirective(HuTaoParser::UsingNamespaceDirectiveContext *ctx) = 0;
-  virtual void exitUsingNamespaceDirective(HuTaoParser::UsingNamespaceDirectiveContext *ctx) = 0;
-
-  virtual void enterUsingStaticDirective(HuTaoParser::UsingStaticDirectiveContext *ctx) = 0;
-  virtual void exitUsingStaticDirective(HuTaoParser::UsingStaticDirectiveContext *ctx) = 0;
+  virtual void enterUsing_directive(HuTaoParser::Using_directiveContext *ctx) = 0;
+  virtual void exitUsing_directive(HuTaoParser::Using_directiveContext *ctx) = 0;
 
   virtual void enterNamespace_member_declarations(HuTaoParser::Namespace_member_declarationsContext *ctx) = 0;
   virtual void exitNamespace_member_declarations(HuTaoParser::Namespace_member_declarationsContext *ctx) = 0;
@@ -703,15 +694,6 @@ public:
 
   virtual void enterString_literal(HuTaoParser::String_literalContext *ctx) = 0;
   virtual void exitString_literal(HuTaoParser::String_literalContext *ctx) = 0;
-
-  virtual void enterInterpolated_regular_string_part(HuTaoParser::Interpolated_regular_string_partContext *ctx) = 0;
-  virtual void exitInterpolated_regular_string_part(HuTaoParser::Interpolated_regular_string_partContext *ctx) = 0;
-
-  virtual void enterInterpolated_verbatium_string_part(HuTaoParser::Interpolated_verbatium_string_partContext *ctx) = 0;
-  virtual void exitInterpolated_verbatium_string_part(HuTaoParser::Interpolated_verbatium_string_partContext *ctx) = 0;
-
-  virtual void enterInterpolated_string_expression(HuTaoParser::Interpolated_string_expressionContext *ctx) = 0;
-  virtual void exitInterpolated_string_expression(HuTaoParser::Interpolated_string_expressionContext *ctx) = 0;
 
   virtual void enterKeyword(HuTaoParser::KeywordContext *ctx) = 0;
   virtual void exitKeyword(HuTaoParser::KeywordContext *ctx) = 0;
