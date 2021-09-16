@@ -1,0 +1,14 @@
+
+SET(LIB_NAME "CodeGen")
+
+SET(HEADER_PATH ${PROJECT_SOURCE_DIR}/include/hutao/${LIB_NAME})
+SET(SOURCE_PATH ${PROJECT_SOURCE_DIR}/source/${LIB_NAME})
+
+file(GLOB_RECURSE HUTAO_LIB_HEADER ${HEADER_PATH}/*.h)
+file(GLOB_RECURSE HUTAO_LIB_SOURCE ${SOURCE_PATH}/*.cpp)
+
+
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+add_library(hutao-codegen STATIC ${HUTAO_LIB_HEADER} ${HUTAO_LIB_SOURCE})
+set_target_properties(hutao-codegen PROPERTIES LINKER_LANGUAGE C++)
