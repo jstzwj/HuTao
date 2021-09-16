@@ -7,22 +7,17 @@ compilation_unit
 	: using_directives? namespace_member_declarations? EOF
 	;
 
-//B.2 Syntactic grammar
-
-//B.2.1 Basic concepts
-
 namespace_or_type_name 
 	: (identifier type_argument_list? | qualified_alias_member) ('.' identifier type_argument_list?)*
 	;
 
-//B.2.2 Types
 type_
 	: base_type ('?' | rank_specifier | '*')*
 	;
 
 base_type
 	: simple_type
-	| class_type  // represents types: enum, class, interface, delegate, type_parameter
+	| class_type
 	| VOID '*'
 	| tuple_type
 	;
@@ -61,7 +56,6 @@ floating_point_type
 	| F64
 	;
 
-/** namespace_or_type_name, OBJECT, STRING */
 class_type 
 	: namespace_or_type_name
 	| OBJECT
@@ -72,7 +66,6 @@ type_argument_list
 	: '<' type_ ( ',' type_)* '>'
 	;
 
-//B.2.4 Expressions
 argument_list 
 	: argument ( ',' argument)*
 	;
@@ -1140,7 +1133,7 @@ constructor_declaration
 	: identifier OPEN_PARENS formal_parameter_list? CLOSE_PARENS constructor_initializer? body
 	;
 
-method_declaration // lamdas from C# 6
+method_declaration
 	: method_member_name type_parameter_list? OPEN_PARENS formal_parameter_list? CLOSE_PARENS
 	    type_parameter_constraints_clauses? (method_body | right_arrow throwable_expression ';')
 	;
@@ -1149,7 +1142,7 @@ method_member_name
 	: (identifier | identifier '::' identifier) (type_argument_list? '.' identifier)*
 	;
 
-operator_declaration // lamdas form C# 6
+operator_declaration
 	: OPERATOR overloadable_operator OPEN_PARENS IN? arg_declaration
 	       (',' IN? arg_declaration)? CLOSE_PARENS (body | right_arrow throwable_expression ';')
 	;

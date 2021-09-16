@@ -4,7 +4,7 @@
 
 int main(int argc, char* argv[])
 {
-	std::string inputFile = "../../../../example/test.hutao";
+	std::string inputFile = "../../../example/test.hutao";
 	hutao::Driver driver(inputFile);
 	driver.compile();
     return 0;
