@@ -1,5 +1,5 @@
-#ifndef HUTAO_COMPILER_LEXER_H_
-#define HUTAO_COMPILER_LEXER_H_
+#ifndef HUTAO_LEXER_LEXER_H_
+#define HUTAO_LEXER_LEXER_H_
 
 #include <vector>
 #include <optional>
@@ -101,4 +101,4 @@ namespace hutao
         bool is_whitespace(UniChar c);
     };
 }
-#endif
+#endif // HUTAO_LEXER_LEXER_H_
