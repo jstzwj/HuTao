@@ -1,6 +1,5 @@
 [requires]
 fmt/8.0.1
-llvm-core/12.0.0
 
 [options]
 

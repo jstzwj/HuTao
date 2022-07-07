@@ -8,7 +8,6 @@
 
 #include <hutao/Basic/UniString.h>
 #include <hutao/Lexer/Lexer.h>
-#include <hutao/CodeGen/CodeGen.h>
 
 namespace hutao
 {
