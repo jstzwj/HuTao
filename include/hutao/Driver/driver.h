@@ -27,6 +27,7 @@ namespace hutao
 			std::ifstream fin(_file);
 			std::string rawSourceCode((std::istreambuf_iterator<char>(fin)), std::istreambuf_iterator<char>());
 			hutao::UniString code = hutao::UniString::from_utf8(rawSourceCode);
+			std::cout << code;
 		}
     };
 }

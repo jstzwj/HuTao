@@ -100,7 +100,7 @@ namespace hutao
         codepoint = ch;
         return true;
     }
-    inline std::size_t UniChar::len_utf8(std::uint32_t code)
+    std::size_t UniChar::len_utf8(std::uint32_t code)
     {
         if (code < MAX_ONE_B)
             return 1;
@@ -111,7 +111,7 @@ namespace hutao
         else
             return 4;
     }
-    inline std::size_t UniChar::len_utf16(std::uint16_t code)
+    std::size_t UniChar::len_utf16(std::uint16_t code)
     {
         std::uint32_t ch = code;
         if ((ch & 0xFFFF) == ch)
@@ -119,7 +119,7 @@ namespace hutao
         else
             return 2;
     }
-    inline std::size_t UniChar::encode_utf8_raw(CodePointType code, CharType* dst, std::size_t dst_len)
+    std::size_t UniChar::encode_utf8_raw(CodePointType code, CharType* dst, std::size_t dst_len)
     {
         std::size_t len = len_utf8(code);
         if (dst_len < len)
@@ -155,7 +155,7 @@ namespace hutao
 
         return len;
     }
-    inline std::size_t UniChar::encode_utf16_raw(CodePointType code, CharType* dst, std::size_t dst_len)
+    std::size_t UniChar::encode_utf16_raw(CodePointType code, CharType* dst, std::size_t dst_len)
     {
         if ((code & 0xFFFF) == code && dst_len >= 2)
         {

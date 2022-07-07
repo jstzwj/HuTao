@@ -222,14 +222,23 @@ namespace hutao
             }
         }
 
-        UniStringChars chars()
+        UniStringChars chars() const
         {
             return UniStringChars(this, this->storage.data());
         }
 
         friend std::ostream &operator<<(std::ostream &out, const UniString &s)
         {
-            // out << s.id << ":" << s.name.c_str() << endl;
+            UniStringChars chars = s.chars();
+
+            while (true)
+            {
+                auto value = chars.next();
+                if (value.has_value())
+                    out << value.value();
+                else
+                    break;
+            }
             return out;
         }
 
